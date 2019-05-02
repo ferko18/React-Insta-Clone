@@ -1,43 +1,32 @@
 import React, { Component } from "react";
-import dummyData from "./dummy-data";
+// import dummyData from "./dummy-data";
 import "./App.css";
-import PostContainer from "./Components/PostContainer/PostContainer";
-import SearchBarContainer from "./Components/SearchBar/SearchBarContainer";
+// import PostContainer from "./Components/PostContainer/PostContainer";
+// import SearchBarContainer from "./Components/SearchBar/SearchBarContainer";
+import PostsPage from './Components/PostContainer/PostsPage.js'
+import Login from './Components/Login/Login'
+import withAuthenticate from './Components/Authentication/Authenticate'
 
 class App extends Component {
-  state = {
-    coolData: [],
-    filteredData: []
-  };
-
-  componentDidMount() {
-    this.setState({ coolData: dummyData });
+  constructor() {
+    super();
+    this.state = {};
   }
 
 
-  searchPostsHandler = e => {
-    var updatedData = this.state.initialItems;
-    updatedData = updatedData.filter(function(item){
-      return item.toLowerCase().search(
-        e.target.value.toLowerCase()) !== -1;
-    });
-    this.setState({filteredData: updatedData});
-  };
-
-
+ 
 
   render() {
     return (
       <div className="App">
-        <SearchBarContainer searchfn={this.searchPostsHandler} />
-        {this.state.coolData.map(e => (
-          <PostContainer Data={e} key={e.timestamp} />
-        ))}
+        <Comp/>
       </div>
     );
   }
 }
 
+const Comp = withAuthenticate(PostsPage)(Login);
+
 export default App;
 
-//
+
