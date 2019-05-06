@@ -2,7 +2,22 @@ import "./Comment.css";
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import Comment from './Comment'
+import styled from "styled-components";
 // import CommentInput from'./CommentInput'
+
+const CommentBox = styled.div`
+
+    input{
+     border: white; 
+    border-top: solid gray 1px;
+    //border-right: solid gray 1px;
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    padding-left: 2%;
+    padding-top:
+    }
+  `;
 
 class CommentSection extends Component {
   constructor(props) {
@@ -21,7 +36,7 @@ class CommentSection extends Component {
   AddComment = e => {
     e.preventDefault();
 
-   const newComment = { text: this.state.comment, username: 'Firealem Erko' }
+   const newComment = { text: this.state.comment, username: "Firealem Erko" }
    
     this.setState({
       comments: [...this.state.comments, newComment], comment:''
@@ -31,15 +46,18 @@ class CommentSection extends Component {
    
   };
 
+  
+
   render() {
+
     return (
-      <div>
+      <CommentBox>
        {this.state.comments.map((e, index) => <Comment key={index} comment={e} />)}
        <form onSubmit= {this.AddComment}>
         <input type="text" placeholder="Add comment... " value={this.state.comment} onChange={this.commentHandler}/>
         {/* <CommentInput comment={this.state.comment} submitComment={this.AddComment} changeComment={this.commentHandler}/> */}
        </form>
-      </div>
+      </CommentBox>
     );
   }
 

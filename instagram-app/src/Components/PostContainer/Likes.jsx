@@ -1,5 +1,18 @@
 import React, { Component } from "react";
 import "./Post.css";
+import styled from 'styled-components'
+
+const StyledLikes = styled.div`
+      // border: solid red 1px;
+      text-align: left;
+      padding-left: 2%;
+      font-size: 1.5rem;
+      font-weight: 500
+      i{
+        margin-right: 2%;
+      }
+     
+    `
 
 class Likes extends Component {
   constructor(props) {
@@ -14,14 +27,18 @@ class Likes extends Component {
     this.setState({numberOfLikes: this.state.numberOfLikes+1})
   }
 
+
+
   render() {
+    
+
     return (
-      <div>
+      <StyledLikes>
         <i className="far fa-heart" onClick={this.Counter} /> <> </>
         <i className="far fa-comment" />
-        <div>{this.state.numberOfLikes}</div>
-        <div> likes </div>
-      </div>
+        <div>{this.state.numberOfLikes} Likes </div> 
+       
+      </StyledLikes>
     );
   }
 }
